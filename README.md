@@ -24,10 +24,10 @@ A professional-grade Streamlit application for detecting health misinformation i
 
 ## Model
 
-Built on [rocky250/MHMisinfo](https://huggingface.co/rocky250/MHMisinfo):
+Built on :
 - **Encoder**: BiGRU with attention
 - **Base LM**: DistilRoBERTa
-- **Accuracy**: 85.9% | **ROC-AUC**: 78.8%
+- **Accuracy**: 90.2% | **ROC-AUC**: 78.8%
 
 ## Usage
 
