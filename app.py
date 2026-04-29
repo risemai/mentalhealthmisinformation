@@ -385,13 +385,13 @@ def page_landing():
             st.rerun()
         st.markdown('</div>', unsafe_allow_html=True)
 
-    #  Card 3 · Custom Data Input (Video Lab) ─
+    #  Card 3 · Custom Data Input (Explore Video) ─
     with c3:
         st.markdown(
             landing_card_html(
                 icon="🎬",
                 title="Custom Data Input",
-                file_label="Video Intelligence Lab · YouTube API",
+                file_label="Exploration of Visual Intelligence · YouTube API",
                 desc=(
                     "Paste any YouTube URL or search by keyword to run live "
                     "misinfo detection, sentiment analysis, and engagement scoring "
@@ -403,7 +403,7 @@ def page_landing():
             unsafe_allow_html=True,
         )
         st.markdown('<div class="landing-cta" style="--btn-color:#F59E0B">', unsafe_allow_html=True)
-        if st.button("Open Video Lab →", key="nav_lab", use_container_width=True):
+        if st.button("Explore Video →", key="nav_lab", use_container_width=True):
             st.session_state["page"] = "video_lab"
             st.rerun()
         st.markdown('</div>', unsafe_allow_html=True)
@@ -1102,7 +1102,7 @@ def page_dataset_analysis():
 
 
 
-#  PAGE: VIDEO LAB
+#  PAGE: Explore Video
 
 
 def _metric_card(icon: str, value: str, label: str, border_color: str) -> str:
@@ -1246,12 +1246,12 @@ def _run_analysis_pipeline(vid_id, api_key, max_comments, sentiment_method, fetc
   <div style="font-size:2.2rem;font-weight:700;color:{banner_color};font-family:monospace;margin-top:4px">{conf}% Confidence</div>
 </div>""", unsafe_allow_html=True)
 
-    st.markdown(
-        f'<div style="background:#0d1119;border-left:3px solid #ffb347;padding:0.8rem 1rem;'
-        f'border-radius:0 8px 8px 0;font-size:0.85rem;color:#c0c4cc;line-height:1.65;margin-bottom:1rem">'
-        f'🧠 <b>Reasoning:</b> {result["reasoning"]}</div>',
-        unsafe_allow_html=True,
-    )
+    # st.markdown(
+    #     f'<div style="background:#0d1119;border-left:3px solid #ffb347;padding:0.8rem 1rem;'
+    #     f'border-radius:0 8px 8px 0;font-size:0.85rem;color:#c0c4cc;line-height:1.65;margin-bottom:1rem">'
+    #     f'🧠 <b>Reasoning:</b> {result["reasoning"]}</div>',
+    #     unsafe_allow_html=True,
+    # )
 
     st.markdown("#### 🔬 Modality Analysis")
     mod_analysis = result.get("modality_analysis", {})
@@ -1339,7 +1339,7 @@ def page_video_lab():
 <div style="margin-bottom:28px">
   <p style="font-size:0.68rem;font-weight:700;letter-spacing:0.18em;text-transform:uppercase;
             color:#5a6070;margin:0 0 8px 0">🎬 Real-Time Analysis</p>
-  <h2 style="margin:0;font-size:1.8rem;font-weight:800;letter-spacing:-0.02em">Video Intelligence Lab</h2>
+  <h2 style="margin:0;font-size:1.8rem;font-weight:800;letter-spacing:-0.02em">Exploration of Visual Intelligence</h2>
   <p style="color:#8090a0;margin:8px 0 0;font-size:0.95rem">
     Paste a YouTube URL or search by keyword to run live misinfo detection,
     sentiment analysis, and engagement scoring.
@@ -1461,7 +1461,7 @@ if _current_page == "landing":
 #  All other pages: show compact top-left header (branding + Home button) ─
 _render_sub_header()
 
-#  Dataset detail & Video Lab pages — no navbar needed 
+#  Dataset detail & Explore Video pages — no navbar needed 
 #    Users return to landing via the "Home" button in _render_sub_header().
 if _current_page == "dataset_gold":
     page_dataset_detail("mhmisinfo")
@@ -1515,7 +1515,7 @@ with st.container():
     st.markdown('<div class="nav-container">', unsafe_allow_html=True)
     selected_page = option_menu(
         menu_title=None,
-        options=["Home", "Dataset Analysis", "Video Lab"],
+        options=["Home", "Dataset Analysis", "Explore Video"],
         icons=["house-fill", "bar-chart-fill", "camera-video-fill"],
         default_index=_nav_default,
         orientation="horizontal",
@@ -1539,8 +1539,8 @@ elif selected_page == "Dataset Analysis":
     st.session_state["page"] = "dataset_analysis"
     page_dataset_analysis()
 
-elif selected_page == "Video Lab":
-    # Clicking Video Lab from the navbar transitions to the no-navbar path
+elif selected_page == "Explore Video":
+    # Clicking Explore Video from the navbar transitions to the no-navbar path
     st.session_state["page"] = "video_lab"
     st.rerun()
 
