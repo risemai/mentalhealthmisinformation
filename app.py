@@ -1170,7 +1170,7 @@ def _run_analysis_pipeline(vid_id, api_key, max_comments, sentiment_method, fetc
     thumb_col, info_col = st.columns([1, 2], gap="large")
     with thumb_col:
         if meta.get("thumbnail_url"):
-            st.image(meta["thumbnail_url"], use_column_width=True)
+            st.image(meta["thumbnail_url"], use_container_width=True)
         st.markdown(
             f'<div style="font-weight:700;font-size:0.95rem;color:#e8eaf0;margin-top:6px">'
             f'{meta.get("title","")}</div>'
