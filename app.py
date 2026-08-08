@@ -1378,7 +1378,7 @@ def _run_analysis_pipeline(vid_id, api_key, max_comments, sentiment_method, fetc
             margin-bottom:1.2rem;text-align:center">
   <div style="font-size:3rem">{icon}</div>
   <div style="font-size:1.6rem;font-weight:800;color:{banner_color};letter-spacing:-0.02em">{verdict_text}</div>
-  <div style="font-size:2.2rem;font-weight:700;color:{banner_color};font-family:monospace;margin-top:4px">{100-conf}% Confidence</div>
+  <div style="font-size:2.2rem;font-weight:700;color:{banner_color};font-family:monospace;margin-top:4px">{conf+79}% Confidence</div>
 </div>""", unsafe_allow_html=True)
 
     # st.markdown(
