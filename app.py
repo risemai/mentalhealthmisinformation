@@ -63,9 +63,13 @@ st.set_page_config(
 
 st.markdown(get_global_css(), unsafe_allow_html=True)
 
-# ─ Session State Initialisation 
-if "page" not in st.session_state:
-    st.session_state["page"] = "landing"
+# ─ Login State Initialisation ─
+if "authenticated" not in st.session_state:
+    st.session_state["authenticated"] = False
+
+# Demo credentials
+LOGIN_USERNAME = "admin"
+LOGIN_PASSWORD = "admin123"
 
 # ─ Metrics / Config Data 
 REPORT_METRICS = {
@@ -1100,7 +1104,138 @@ def page_dataset_analysis():
         )
         st.plotly_chart(fig2, use_container_width=True, key="training_convergence_chart_final")
 
+    # ─ LOGIN PAGE ─
 
+def page_login():
+    """Professional login page."""
+
+    st.markdown(
+        """
+        <style>
+        .login-wrapper {
+            max-width: 430px;
+            margin: 8vh auto 0 auto;
+            padding: 42px 42px 38px 42px;
+            background: white;
+            border: 1px solid #E9ECEF;
+            border-radius: 20px;
+            box-shadow: 0 15px 45px rgba(0,0,0,0.08);
+        }
+
+        .login-logo {
+            width: 64px;
+            height: 64px;
+            margin: 0 auto 20px auto;
+            border-radius: 16px;
+            background: linear-gradient(135deg, #10B981, #059669);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 30px;
+            box-shadow: 0 8px 20px rgba(16,185,129,0.25);
+        }
+
+        .login-title {
+            text-align: center;
+            font-size: 1.65rem;
+            font-weight: 800;
+            color: #212529;
+            margin-bottom: 8px;
+            letter-spacing: -0.02em;
+        }
+
+        .login-subtitle {
+            text-align: center;
+            color: #868E96;
+            font-size: 0.88rem;
+            line-height: 1.6;
+            margin-bottom: 28px;
+        }
+
+        .login-footer {
+            text-align: center;
+            color: #ADB5BD;
+            font-size: 0.72rem;
+            margin-top: 24px;
+            font-family: monospace;
+        }
+        </style>
+
+        <div class="login-wrapper">
+            <div class="login-logo">🔍</div>
+
+            <div class="login-title">
+                Misinformation Detection
+            </div>
+
+            <div class="login-subtitle">
+                Sign in to access the AI-powered<br>
+                misinformation analysis platform.
+            </div>
+        </div>
+        """,
+        unsafe_allow_html=True,
+    )
+
+    # Put the form visually inside the card area
+    _, form_col, _ = st.columns([1, 4, 1])
+
+    with form_col:
+        with st.form("login_form", clear_on_submit=False):
+
+            username = st.text_input(
+                "Username",
+                placeholder="Enter your username",
+                key="login_username",
+            )
+
+            password = st.text_input(
+                "Password",
+                type="password",
+                placeholder="Enter your password",
+                key="login_password",
+            )
+
+            remember = st.checkbox(
+                "Remember me",
+                value=True,
+                key="remember_login",
+            )
+
+            login_clicked = st.form_submit_button(
+                "🔐 Sign In",
+                type="primary",
+                use_container_width=True,
+            )
+
+        if login_clicked:
+
+            if (
+                username.strip() == LOGIN_USERNAME
+                and password == LOGIN_PASSWORD
+            ):
+                st.session_state["authenticated"] = True
+                st.session_state["page"] = "landing"
+
+                st.success("Login successful! Redirecting...")
+
+                st.rerun()
+
+            else:
+                st.error(
+                    "❌ Invalid username or password. "
+                    "Please check your credentials."
+                )
+
+        st.markdown(
+            """
+            <div class="login-footer">
+                MHMisinfo · AI Research Platform<br>
+                Secure Research Environment
+            </div>
+            """,
+            unsafe_allow_html=True,
+        )
 
 #  PAGE: Explore Video
 
