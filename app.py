@@ -1230,9 +1230,9 @@ def _run_analysis_pipeline(vid_id, api_key, max_comments, sentiment_method, fetc
 
     score = result["score"]
     conf  = result["confidence_pct"]
-    if score >= 0.65:
+    if score >= 0.20:
         banner_color, icon, verdict_text = "#ff4757", "🚨", "LIKELY MISINFORMATION"
-    elif score >= 0.35:
+    elif score >= 0.10:
         banner_color, icon, verdict_text = "#ffb347", "⚠️", "UNCERTAIN / MIXED SIGNALS"
     else:
         banner_color, icon, verdict_text = "#00e5a0", "✅", "APPEARS CREDIBLE"
