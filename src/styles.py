@@ -1386,9 +1386,9 @@ def video_info_grid_html(meta: dict) -> str:
 
 
 def result_banner_html(result: dict) -> str:
-    is_misinfo = result.get("score", 0) >= 0.5
+    is_misinfo = result.get("score", 0) >= 0.3
     cls = "danger" if is_misinfo else "safe"
-    icon = "🚨" if is_misinfo else "✅"
+    icon = "🚨" if is_misinfo else "xxxxx"
     label = result.get("label", "")
     pct = result.get("confidence_pct", 0)
     reasoning = result.get("reasoning", "")[:200]
